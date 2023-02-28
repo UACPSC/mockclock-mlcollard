@@ -23,6 +23,12 @@ namespace {
     }
 }
 
+class Clock {
+public:
+    virtual std::time_t start() const = 0;
+    virtual std::time_t stop() const = 0;
+};
+
 class Session {
 public:
     // constructor
@@ -54,6 +60,8 @@ int main() {
         s.stop();
         assert(SessionReport::displayTime(s.seconds()) == "00:00:02");
     }
+
+
 
     return 0;
 }
