@@ -63,6 +63,17 @@ private:
     std::time_t stop_time;
 };
 
+class TenMinuteClock : public Clock {
+public:
+    std::time_t start() const {
+        return 0;
+    }
+
+    std::time_t stop() const {
+        return 60 * 10;
+    }
+};
+
 int main() {
 
     // 2-second session
@@ -73,7 +84,13 @@ int main() {
         assert(SessionReport::displayTime(s.seconds()) == "00:00:02");
     }
 
-
+    // 10-minute session
+    {
+        TenMinuteClock clock;
+        Session s(clock);
+        s.stop();
+        assert(SessionReport::displayTime(s.seconds()) == "00:10:00");
+    }
 
     return 0;
 }
