@@ -29,6 +29,17 @@ public:
     virtual std::time_t stop() const = 0;
 };
 
+class TimeClock : public Clock {
+public:
+    std::time_t start() const {
+        return stop();
+    }
+
+    std::time_t stop() const {
+        return std::time(nullptr);
+    }
+};
+
 class Session {
 public:
     // constructor
